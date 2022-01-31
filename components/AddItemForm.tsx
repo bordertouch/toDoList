@@ -1,16 +1,23 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 
 type ErrorType = '' | 'Task title could not be empty!'
-
 type InputPropsType = {
     toDoListId: string
-    addTask: (title: string, toDoListId: string) => void
+    addItem: (title: string, toDoListId: string) => void
 }
-
-export const Input: React.FC<InputPropsType> = ({toDoListId, addTask}) => {
+export const AddItemForm: React.FC<InputPropsType> = ({toDoListId, addItem}) => {
 
     const [newTaskTitle, setTaskTitle] = useState('')
     const [error, setError] = useState<ErrorType>('')
+
+    const addHandler = () => {
+        if (newTaskTitle.trim() !== '') {
+            addItem(newTaskTitle, toDoListId)
+            setTaskTitle('')
+        } else {
+            setError('Task title could not be empty!')
+        }
+    }
 
     const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTaskTitle(e.currentTarget.value)
@@ -20,18 +27,9 @@ export const Input: React.FC<InputPropsType> = ({toDoListId, addTask}) => {
         setError('')
         console.log(e.key)
         if (e.key === 'Enter' && newTaskTitle.trim() !== '') {
-            addTask(newTaskTitle, toDoListId)
+            addItem(newTaskTitle, toDoListId)
             setTaskTitle('')
         } else if (e.key === 'Enter' && newTaskTitle.trim() === '') {
-            setError('Task title could not be empty!')
-        }
-    }
-
-    const addHandler = () => {
-        if (newTaskTitle.trim() !== '') {
-            addTask(newTaskTitle, toDoListId)
-            setTaskTitle('')
-        } else {
             setError('Task title could not be empty!')
         }
     }

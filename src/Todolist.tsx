@@ -3,7 +3,8 @@ import {FilterValuesType, TaskType} from './App';
 import './App.css'
 import {Task} from "./Task";
 import {FilterButton} from "./FilterButton";
-import {Input} from "./Input";
+import {TdlHead} from "./TdlHead";
+import {AddItemForm} from "../components/AddItemForm";
 
 
 type PropsType = {
@@ -15,6 +16,7 @@ type PropsType = {
     changeFilter: (value: FilterValuesType, toDoListId: string) => void
     changeStatus: (taskId: string, isDone: boolean, toDoListId: string) => void
     addTask: (title: string, toDoListId: string) => void
+    deleteToDoList: (toDoListId: string) => void
 }
 
 
@@ -30,9 +32,11 @@ export function Todolist(props: PropsType) {
     }
 
 
+
+
     return <div>
-        <h3>{props.title}</h3>
-        <Input toDoListId={props.toDoListId} addTask={props.addTask}/>
+        <TdlHead title={props.title} toDoListId={props.toDoListId} deleteToDoList={props.deleteToDoList}/>
+        <AddItemForm toDoListId={props.toDoListId} addItem={props.addTask}/>
             <ul>
             {
                 tasksForTodolist.map(t => {
