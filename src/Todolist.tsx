@@ -4,7 +4,7 @@ import './App.css'
 import {Task} from "./Task";
 import {FilterButton} from "./FilterButton";
 import {TdlHead} from "./TdlHead";
-import {AddItemForm} from "../components/AddItemForm";
+import {AddItemForm} from "./components/AddItemForm";
 
 
 type PropsType = {
@@ -31,12 +31,14 @@ export function Todolist(props: PropsType) {
         tasksForTodolist = props.tasks.filter(t => t.isDone);
     }
 
-
+    const addTask = (title: string) => {
+        props.addTask(title, props.toDoListId)
+    }
 
 
     return <div>
         <TdlHead title={props.title} toDoListId={props.toDoListId} deleteToDoList={props.deleteToDoList}/>
-        <AddItemForm toDoListId={props.toDoListId} addItem={props.addTask}/>
+        <AddItemForm addItem={addTask}/>
             <ul>
             {
                 tasksForTodolist.map(t => {
