@@ -2,6 +2,7 @@ import React, {ChangeEvent, useState} from "react";
 
 type EditableSpanPropsType = {
     title: string
+    callBack: (title: string) => void
 }
 
 export const EditableSpan: React.FC<EditableSpanPropsType> = (props) => {
@@ -15,6 +16,7 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = (props) => {
 
     const onBlurHandler = () => {
         setEditionMode(false)
+        props.callBack(title)
     }
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {

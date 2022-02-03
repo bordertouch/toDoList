@@ -50,8 +50,8 @@ function App() {
     })
 
 
-    const removeTask = (id: string, toDoListId: string) => {
-        setAllTasks({...allTasks, [toDoListId]: allTasks[toDoListId].filter(t => t.id !== id)})
+    const removeTask = (taskId: string, toDoListId: string) => {
+        setAllTasks({...allTasks, [toDoListId]: allTasks[toDoListId].filter(t => t.id !== taskId)})
     }
 
     const addTask = (title: string, toDoListId: string) => {
@@ -78,6 +78,15 @@ function App() {
         setAllTasks({...allTasks})
     }
 
+    const updateTaskTitle = (toDoListId: string, taskId: string, title: string) => {
+        setAllTasks({...allTasks, [toDoListId]: allTasks[toDoListId].map(t => t.id === taskId ? {...t, title: title} : t)})
+        console.log(allTasks)
+    }
+
+    const updateToDoListTitle = (toDoListId: string, title: string) => {
+        setToDoLists(toDoLists.map(td => td.id === toDoListId ? {...td, title: title} : td))
+        console.log(toDoLists)
+    }
 
     return (
         <div className="App">
@@ -93,6 +102,8 @@ function App() {
                                  addTask={addTask}
                                  deleteToDoList={deleteToDoList}
                                  filter={tl.filter}
+                                 updateTaskTitle={updateTaskTitle}
+                                 updateToDoListTitle={updateToDoListTitle}
                 />
             })}
         </div>

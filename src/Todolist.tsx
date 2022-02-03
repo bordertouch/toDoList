@@ -17,6 +17,8 @@ type PropsType = {
     changeStatus: (taskId: string, isDone: boolean, toDoListId: string) => void
     addTask: (title: string, toDoListId: string) => void
     deleteToDoList: (toDoListId: string) => void
+    updateTaskTitle: (toDoListId: string, taskId: string, title: string) => void
+    updateToDoListTitle: (toDoListId: string, title: string) => void
 }
 
 
@@ -37,7 +39,10 @@ export function Todolist(props: PropsType) {
 
 
     return <div>
-        <TdlHead title={props.title} toDoListId={props.toDoListId} deleteToDoList={props.deleteToDoList}/>
+        <TdlHead title={props.title}
+                 toDoListId={props.toDoListId}
+                 deleteToDoList={props.deleteToDoList}
+                 callBack={props.updateToDoListTitle}/>
         <AddItemForm addItem={addTask}/>
             <ul>
             {
@@ -46,6 +51,7 @@ export function Todolist(props: PropsType) {
                         toDoListId={props.toDoListId}
                         removeTask={props.removeTask}
                         changeStatus={props.changeStatus}
+                        updateTaskTitle={props.updateTaskTitle}
                         task={t}/>})
                 }
             </ul>
