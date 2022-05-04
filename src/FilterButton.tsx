@@ -14,7 +14,7 @@ export const FilterButton: React.FC<FilterButtonPropsType> = ({name, toDoListId,
     const changeFilter = (filter: FilterValuesType, toDoListId: string) => props.changeFilter(filter, toDoListId)
 
     return (
-        <button onClick={ () => { changeFilter(name, toDoListId) } } className={filter.toLowerCase() === name.toLowerCase() ? 'active-filter' : ''}>{name[0].toUpperCase() + name.slice(1)}</button>
+        <button onClick={() =>{changeFilter(name, toDoListId)}} className={filter.toLowerCase() === name.toLowerCase() ? 'active-filter' : ''}>{name[0].toUpperCase() + name.slice(1)}</button>
     )
 
 }

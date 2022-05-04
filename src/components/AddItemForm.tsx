@@ -1,6 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 
-type ErrorType = '' | 'Task title could not be empty!'
+type ErrorType = '' | 'Title could not be empty!' | 'Title is too long!'
 type InputPropsType = {
     addItem: (title: string) => void
 }
@@ -10,11 +10,14 @@ export const AddItemForm: React.FC<InputPropsType> = ({addItem}) => {
     const [error, setError] = useState<ErrorType>('')
 
     const addHandler = () => {
-        if (newTitle.trim() !== '') {
+        if (newTitle.trim() !== '' && newTitle.trim().length <= 50) {
             addItem(newTitle)
             setNewTitle('')
+        } else if (newTitle.trim().length > 50) {
+            setError('Title is too long!')
+            setNewTitle('')
         } else {
-            setError('Task title could not be empty!')
+            setError('Title could not be empty!')
         }
     }
 
@@ -29,7 +32,7 @@ export const AddItemForm: React.FC<InputPropsType> = ({addItem}) => {
             addItem(newTitle)
             setNewTitle('')
         } else if (e.key === 'Enter' && newTitle.trim() === '') {
-            setError('Task title could not be empty!')
+            setError('Title could not be empty!')
         }
     }
 

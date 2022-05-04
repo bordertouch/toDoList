@@ -24,7 +24,6 @@ type PropsType = {
 
 export function Todolist(props: PropsType) {
 
-
     let tasksForTodolist = props.tasks
     if (props.filter === "active") {
         tasksForTodolist = props.tasks.filter(t => !t.isDone); //[]
@@ -36,7 +35,6 @@ export function Todolist(props: PropsType) {
     const addTask = (title: string) => {
         props.addTask(title, props.toDoListId)
     }
-
 
     return <div>
         <TdlHead title={props.title}
@@ -50,7 +48,7 @@ export function Todolist(props: PropsType) {
                     return <Task
                         toDoListId={props.toDoListId}
                         removeTask={props.removeTask}
-                        changeStatus={props.changeStatus}
+                        changeTaskStatus={props.changeStatus}
                         updateTaskTitle={props.updateTaskTitle}
                         task={t}/>})
                 }

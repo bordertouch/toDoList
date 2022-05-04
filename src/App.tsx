@@ -22,6 +22,7 @@ type AllTasksType = {
     [key: string]: TaskType[]
 }
 
+
 function App() {
 
     const toDoListID_1 = v1()
@@ -80,7 +81,6 @@ function App() {
 
     const updateTaskTitle = (toDoListId: string, taskId: string, title: string) => {
         setAllTasks({...allTasks, [toDoListId]: allTasks[toDoListId].map(t => t.id === taskId ? {...t, title: title} : t)})
-        console.log(allTasks)
     }
 
     const updateToDoListTitle = (toDoListId: string, title: string) => {
@@ -90,6 +90,9 @@ function App() {
 
     return (
         <div className="App">
+            <h3>
+                What do you want to do?
+            </h3>
             <AddItemForm addItem={addToDoList}/>
             {toDoLists.map((tl) => {
                 return <Todolist key={tl.id}

@@ -6,18 +6,18 @@ type TaskPropsType = {
     task: TaskType
     toDoListId: string
     removeTask: (taskId: string, toDoListId: string) => void
-    changeStatus: (taskId: string, isDone: boolean, toDoListId: string) => void
+    changeTaskStatus: (taskId: string, isDone: boolean, toDoListId: string) => void
     updateTaskTitle: (toDoListId: string, taskId: string, title: string) => void
 }
 
-export const Task: React.FC<TaskPropsType> = ({toDoListId, removeTask, changeStatus, task, ...props}) => {
+export const Task: React.FC<TaskPropsType> = ({toDoListId, removeTask, changeTaskStatus, task, ...props}) => {
 
     useEffect(()=> {
         console.log(task)
     },[task.title])
 
     const onChangeCheckboxHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        changeStatus(task.id, e.currentTarget.checked, toDoListId)
+        changeTaskStatus(task.id, e.currentTarget.checked, toDoListId)
     }
 
     const removeHandler = () => removeTask(task.id, toDoListId)
