@@ -1,4 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import {IconButton, TextField} from "@material-ui/core";
+import {AddBox} from "@material-ui/icons";
 
 type ErrorType = '' | 'Title could not be empty!' | 'Title is too long!'
 type InputPropsType = {
@@ -36,17 +38,28 @@ export const AddItemForm: React.FC<InputPropsType> = ({addItem}) => {
         }
     }
 
+
     return (
         <div>
-            <input value={newTitle}
-                   onChange={onChangeInputHandler}
-                   onKeyPress={addPressHandler}
-                   className={error ? 'error' : ''}
+            <TextField id="outlined-basic"
+                       label={'Title is required'}
+                       variant="outlined"
+                       value={newTitle}
+                       size={'small'}
+                       error={!!error}
+                       onChange={onChangeInputHandler}
+                       onKeyPress={addPressHandler}
+                       helperText={error}
+                // className={error ? 'error' : ''}
+
             />
-            <button onClick={addHandler}>+</button>
-            {error && <div className={'error-message'}>
-                {error}
-            </div>}
+            <IconButton onClick={addHandler}
+                        color={'primary'}>
+                <AddBox/>
+            </IconButton>
+            {/*{error && <div className={'error-message'}>*/}
+            {/*    {error}*/}
+            {/*</div>}*/}
         </div>
-    )
+    );
 }

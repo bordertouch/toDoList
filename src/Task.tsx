@@ -1,6 +1,8 @@
 import React, {ChangeEvent, useEffect} from "react";
 import {TaskType} from "./App";
 import {EditableSpan} from "./components/EditableSpan";
+import {Checkbox, IconButton} from "@material-ui/core";
+import {Delete} from "@material-ui/icons";
 
 type TaskPropsType = {
     task: TaskType
@@ -27,9 +29,11 @@ export const Task: React.FC<TaskPropsType> = ({toDoListId, removeTask, changeTas
     }
 
     return <li key={task.id} className={task.isDone ? "is-done" : ''}>
-        <input type="checkbox" onChange={onChangeCheckboxHandler} checked={task.isDone}/>
+        <Checkbox onChange={onChangeCheckboxHandler} checked={task.isDone} color={'primary'}/>
         {/*<span>{task.title}</span>*/}
         <EditableSpan title={task.title} callBack={updateTaskTitle}/>
-        <button onClick={removeHandler}>x</button>
+        <IconButton aria-label="delete" onClick={removeHandler} >
+            <Delete />
+        </IconButton>
     </li>
 }

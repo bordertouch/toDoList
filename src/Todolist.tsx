@@ -42,7 +42,7 @@ export function Todolist(props: PropsType) {
                  deleteToDoList={props.deleteToDoList}
                  callBack={props.updateToDoListTitle}/>
         <AddItemForm addItem={addTask}/>
-            <ul>
+        <ul>
             {
                 tasksForTodolist.map(t => {
                     return <Task
@@ -50,13 +50,26 @@ export function Todolist(props: PropsType) {
                         removeTask={props.removeTask}
                         changeTaskStatus={props.changeStatus}
                         updateTaskTitle={props.updateTaskTitle}
-                        task={t}/>})
-                }
-            </ul>
+                        task={t}/>
+                })
+            }
+        </ul>
         <div>
-            <FilterButton toDoListId={props.toDoListId} name={'all'} filter={props.filter} changeFilter={props.changeFilter}/>
-            <FilterButton toDoListId={props.toDoListId} name={'active'} filter={props.filter} changeFilter={props.changeFilter}/>
-            <FilterButton toDoListId={props.toDoListId} name={'completed'} filter={props.filter} changeFilter={props.changeFilter}/>
+            <FilterButton toDoListId={props.toDoListId}
+                          name={'all'}
+                          filter={props.filter}
+                          changeFilter={props.changeFilter}
+                          />
+            <FilterButton toDoListId={props.toDoListId}
+                          name={'active'}
+                          filter={props.filter}
+                          changeFilter={props.changeFilter}
+                          />
+            <FilterButton toDoListId={props.toDoListId}
+                          name={'completed'}
+                          filter={props.filter}
+                          changeFilter={props.changeFilter}
+                          />
         </div>
     </div>
 }

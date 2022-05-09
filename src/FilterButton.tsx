@@ -1,5 +1,6 @@
 import React from "react";
 import {FilterValuesType} from "./App";
+import {Button} from "@material-ui/core";
 
 
 type FilterButtonPropsType = {
@@ -14,7 +15,11 @@ export const FilterButton: React.FC<FilterButtonPropsType> = ({name, toDoListId,
     const changeFilter = (filter: FilterValuesType, toDoListId: string) => props.changeFilter(filter, toDoListId)
 
     return (
-        <button onClick={() =>{changeFilter(name, toDoListId)}} className={filter.toLowerCase() === name.toLowerCase() ? 'active-filter' : ''}>{name[0].toUpperCase() + name.slice(1)}</button>
+        <Button onClick={() =>{changeFilter(name, toDoListId)}}
+                className={filter.toLowerCase() === name.toLowerCase() ? 'active-filter' : ''}
+                variant={filter.toLowerCase() === name.toLowerCase() ? 'contained' : 'outlined'}
+                color={'primary'}
+        >{name[0].toUpperCase() + name.slice(1)}</Button>
     )
 
 }

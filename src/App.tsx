@@ -3,6 +3,9 @@ import './App.css';
 import {Todolist} from './Todolist';
 import {v1} from "uuid";
 import {AddItemForm} from "./components/AddItemForm";
+import {AppBar, IconButton, Toolbar, Typography} from "@material-ui/core";
+import {Menu} from "@material-ui/icons";
+
 
 export type FilterValuesType = "all" | "active" | "completed"
 
@@ -90,9 +93,6 @@ function App() {
 
     return (
         <div className="App">
-            <h3>
-                What do you want to do?
-            </h3>
             <AddItemForm addItem={addToDoList}/>
             {toDoLists.map((tl) => {
                 return <Todolist key={tl.id}
