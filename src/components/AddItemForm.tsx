@@ -1,6 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
-import {IconButton, TextField} from "@material-ui/core";
-import {AddBox} from "@material-ui/icons";
+import {TextField} from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import {AddBox} from "@mui/icons-material";
 
 type ErrorType = '' | 'Title could not be empty!' | 'Title is too long!'
 type InputPropsType = {
